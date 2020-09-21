@@ -1,0 +1,149 @@
+/* variable definition */
+$main-color: #ff9800;
+$text-color: #455A64;
+$sub-color: rgba($text-color, .25);
+$error-color: red;
+
+*{
+    margin: 0;
+    margin-bottom: .5rem;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    color: $text-color;
+    font-size: 100%;
+    font-weight: normal;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header{
+    padding: 35px 70px;
+}
+
+%container{
+    width: 70%;
+    margin: 0 auto;
+}
+.container{
+    &__heading{
+        @extend %container;
+        text-align: center;
+    }
+    &__form{
+        @extend %container;
+        &--error{
+            background-color: rgba($error-color, .25);
+            color: $error-color;
+            border-radius: 5px;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 10px;
+        }
+    }
+}
+
+hr{
+    border: $sub-color 1px solid;
+    margin: 3rem auto;
+}
+.hr{
+    &--short{
+        width: 20%;
+    }
+    &--long{
+        width: 100%;
+    }
+}
+
+/* div.container__heading */
+h1{
+    font-size: 1.75rem;
+}
+
+.container__heading p{
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.error{
+    color: $error-color;
+}
+
+/* article.container__form */
+.form__title{
+    font-weight: bold;
+    &--must{
+        margin-left: .1rem;
+        font-size: .7rem;
+        padding: .1rem;
+        color: white;
+        background-color: $error-color;
+        border-radius: .25rem;
+    }
+}
+
+.form__message--error{
+    color: $error-color;
+}
+
+.form__contents{
+    border: rgba($sub-color, .25) 1px solid;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.form__contents--error{
+    border: $error-color 1px solid;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.form__contents{
+    &--wide{
+        width: 100%;
+    }
+    &--narrow{
+        width: 29%;
+    }
+}
+
+
+%form__btn{
+    height: 50px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+}
+
+.form__btn{
+    &--narrow{
+        @extend %form__btn;
+        width: 45%;
+    }
+    &--wide{
+        @extend %form__btn;
+        width: 100%;
+    }
+    &--white{
+        border:$text-color 1px solid;
+    }
+    &--main{
+        background-color: $main-color;
+        color: white;
+    }
+}
+
+.btn{
+    display: flex;
+    justify-content: space-around;
+}
