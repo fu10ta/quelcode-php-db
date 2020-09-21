@@ -87,8 +87,14 @@ h1 {
   color: red;
 }
 
-.form__contents--wide, .form__contents--narrow {
+.form__contents {
   border: rgba(69, 90, 100, 0.25) 1px solid;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.form__contents--error {
+  border: red 1px solid;
   border-radius: 5px;
   height: 40px;
 }
@@ -98,7 +104,7 @@ h1 {
 }
 
 .form__contents--narrow {
-  width: 30%;
+  width: 29%;
 }
 
 .form__btn--narrow, .form__btn--wide {

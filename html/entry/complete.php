@@ -1,3 +1,33 @@
+<?php
+session_start();
+require('dbconnect.php');
+
+if(!isset($_SESSION['form']) || $_GET['action'] !== 'confirm'){
+    header('Location: error.php');
+    exit();
+}
+
+$sql = "INSERT INTO applicants SET name=?, furigana=?, email=?, phone_number=?, day_of_birth=?, prefecture_id=?";
+$formData = array(
+    $_SESSION['form']['name'],
+    $_SESSION['form']['furigana'],
+    $_SESSION['form']['email'],
+    $_SESSION['form']['phone_number'],
+    $_SESSION['form']['year'].$_SESSION['form']['month'].$_SESSION['form']['day'],
+    $_SESSION['form']['prefectures']
+);
+
+$applicant = $db -> prepare($sql);
+$complete = $applicant ->execute($formData);
+if($complete){
+    unset($_SESSION);
+}else{
+    header('Location: error.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="jp">
 <head>

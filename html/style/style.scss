@@ -94,22 +94,27 @@ h1{
     color: $error-color;
 }
 
-%form__contents{
+.form__contents{
     border: rgba($sub-color, .25) 1px solid;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.form__contents--error{
+    border: $error-color 1px solid;
     border-radius: 5px;
     height: 40px;
 }
 
 .form__contents{
     &--wide{
-        @extend %form__contents;
         width: 100%;
     }
     &--narrow{
-        @extend %form__contents;
-        width: 30%;
+        width: 29%;
     }
 }
+
 
 %form__btn{
     height: 50px;

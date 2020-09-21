@@ -1,3 +1,18 @@
+<?php
+session_start();
+require('dbconnect.php');
+
+if(!isset($_SESSION['form']) || $_GET['action'] !== 'input'){
+    header('Location: error.php');
+    exit();
+}
+
+//get prefectures
+$prefectures = $db->prepare('SELECT name FROM prefectures WHERE id=?');
+$prefectures->execute(array($_SESSION['form']['prefectures']));
+$prefecture = $prefectures->fetch();
+?>
+
 <!DOCTYPE html>
 <html lang="jp">
 <head>
@@ -24,32 +39,32 @@
     <article class="container__form">
             <section class="form">
                 <h3 class="form__title">お名前<span class="form__title--must">必須</span></h3>
-                <p>比下　大</p>
+                <p><?=$_SESSION['form']['name']?></p>
             </section>
             <section class="form">
                 <h3 class="form__title">ふりがな<span class="form__title--must">必須</span></h3>
-                <p>ひげ　まさる</p>
+                <p><?=$_SESSION['form']['furigana']?></p>
             </section>
             <section class="form">
                 <h3 class="form__title">メールアドレス<span class="form__title--must">必須</span></h3>
-                <p>hige@labot.inc</p>
+                <p><?=$_SESSION['form']['email']?></p>
             </section>
             <section class="form">
                 <h3 class="form__title">電話番号<span class="form__title--must">必須</span></h3>
-                <p>09000000000</p>
+                <p><?=$_SESSION['form']['phone_number']?></p>
             </section>
             <section class="form">
                 <h3 class="form__title">生年月日<span class="form__title--must">必須</span></h3>
-                <p>1967年01月01日</p>
+                <p><?=$_SESSION['form']['year'].'年'.$_SESSION['form']['month'].'月'.$_SESSION['form']['day'].'日'?></p>
             </section>
             <section class="form">
                 <h3 class="form__title">都道府県<span class="form__title--must">必須</span></h3>
-                <p>東京都</p>
+                <p><?=$prefecture['name']?></p>
             </section>
             <hr class="hr--long">
             <section class="btn">
-                <a href="" class="form__btn--narrow form__btn--white">戻る</a>
-                <a href="" class="form__btn--narrow form__btn--main">送信</a>
+                <a href="input.php?action=return" class="form__btn--narrow form__btn--white">戻る</a>
+                <a href="complete.php?action=confirm" class="form__btn--narrow form__btn--main">送信</a>
             </section>
     </article><!-- /.container__form -->
 </main>
